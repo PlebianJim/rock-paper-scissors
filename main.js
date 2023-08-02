@@ -17,7 +17,7 @@ function getComputerChoice() {
 
 //Get player's choice
 function getPlayerChoice() {
-  const choice = String(prompt("Choose rock, paper or scissors: "));
+  const choice = String(prompt("Choose rock, paper or scissors: ")).toLowerCase();
   console.log(`The player chooses: ${choice}`);
   return choice;
 }
@@ -30,22 +30,22 @@ function playRound() {
   //Game logic
   if (playerChoice == computerChoice) {
     console.log("Draw!");
-  } else if (playerChoice == "rock" && computerChoice == "scissors") {
+  } else if (playerChoice == ROCK && computerChoice == "scissors") {
     console.log("Player wins!");
     playerScore++;
-  } else if (playerChoice == "rock" && computerChoice == "paper") {
+  } else if (playerChoice == ROCK && computerChoice == "paper") {
     console.log("Computer wins!");
     computerScore++;
-  } else if (playerChoice == "scissors" && computerChoice == "paper") {
+  } else if (playerChoice == SCISSORS && computerChoice == "paper") {
     console.log("Player wins!");
     playerScore++;
-  } else if (playerChoice == "scissors" && computerChoice == "rock") {
+  } else if (playerChoice == SCISSORS && computerChoice == "rock") {
     console.log("Computer wins!");
     computerScore++;
-  } else if (playerChoice == "paper" && computerChoice == "rock") {
+  } else if (playerChoice == PAPER && computerChoice == "rock") {
     console.log("Player wins!");
     playerScore++;
-  } else if (playerChoice == "paper" && computerChoice == "scissors") {
+  } else if (playerChoice == PAPER && computerChoice == "scissors") {
     console.log("Computer Wins!");
     computerScore++;
   } else console.log("Invalid Choice!");
