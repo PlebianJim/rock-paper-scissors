@@ -1,66 +1,87 @@
-//Game constants
-const ROCK = "rock";
-const PAPER = "paper";
-const SCISSORS = "scissors";
+//Player choice constants
+const ROCK = "Rock";
+const PAPER = "Paper";
+const SCISSORS = "Scissors";
 
-//Keep track of scores
+// Score variables
 let playerScore = 0;
 let computerScore = 0;
 
-//Get computer's choice
-function getComputerChoice() {
-  const rpsArray = ["rock", "paper", "scissors"];
-  const randomChoice = Math.floor(Math.random() * rpsArray.length);
-  console.log("The computer chooses: " + rpsArray[randomChoice]);
-  return String(rpsArray[randomChoice]);
+//Rounds variable
+let rounds = 0;
+
+// Get DOM elements
+const resultEl = document.getElementById("result");
+const finalEl = document.getElementById("final");
+const startAgainBtn = document.getElementById("startAgainBtn");
+
+// Button elements
+const rockBtn = document.getElementById("rockBtn");
+const paperBtn = document.getElementById("paperBtn");
+const scissorsBtn = document.getElementById("scissorsBtn");
+
+// Event listeners
+rockBtn.addEventListener("click", () => playRound(ROCK));
+paperBtn.addEventListener("click", () => playRound(PAPER));
+scissorsBtn.addEventListener("click", () => playRound(SCISSORS));
+startAgainBtn.addEventListener("click", startAgain);
+
+// Display round result
+function displayRoundResult(player, computer, winner) {
+  resultEl.style.color = '#B6C2B7'
+  resultEl.innerText = `Player selects: ${player}\n\nComputer selects: ${computer}\n\n ${winner} wins!`;
+  
+  if (rounds === 5) {
+    finalEl.innerText = `Final result: Player: ${playerScore} - Computer: ${computerScore}`;
+  }
 }
 
-//Get player's choice
-function getPlayerChoice() {
-  const choice = String(prompt("Choose rock, paper or scissors: ")).toLowerCase();
-  console.log(`The player chooses: ${choice}`);
-  return choice;
-}
-
-//Play a round
-function playRound() {
-  const playerChoice = getPlayerChoice();
-  const computerChoice = getComputerChoice();
-
-  //Game logic
-  if (playerChoice == computerChoice) {
-    console.log("Draw!");
-  } else if (playerChoice == ROCK && computerChoice == "scissors") {
-    console.log("Player wins!");
-    playerScore++;
-  } else if (playerChoice == ROCK && computerChoice == "paper") {
-    console.log("Computer wins!");
-    computerScore++;
-  } else if (playerChoice == SCISSORS && computerChoice == "paper") {
-    console.log("Player wins!");
-    playerScore++;
-  } else if (playerChoice == SCISSORS && computerChoice == "rock") {
-    console.log("Computer wins!");
-    computerScore++;
-  } else if (playerChoice == PAPER && computerChoice == "rock") {
-    console.log("Player wins!");
-    playerScore++;
-  } else if (playerChoice == PAPER && computerChoice == "scissors") {
-    console.log("Computer Wins!");
-    computerScore++;
-  } else console.log("Invalid Choice!");
-}
-
-//Game loop
-function game() {
-  for (let i = 0; i < 5; i++) {
-    playRound();
+// Play a round
+function playRound(playerChoice) {
+  if (rounds >= 5) {
+    return;
   }
 
-  //Display final scores
-  console.log("Final Scores: ");
-  console.log("Player Score: ", playerScore);
-  console.log("Computer Score: ", computerScore);
+  const computerChoice = getComputerChoice();
+  rounds++;
+
+  if (playerChoice === computerChoice) {
+    displayRoundResult(playerChoice, computerChoice, "Draw");
+  } else if (
+    (playerChoice === ROCK && computerChoice === SCISSORS) ||
+    (playerChoice === PAPER && computerChoice === ROCK) ||
+    (playerChoice === SCISSORS && computerChoice === PAPER)
+  ) {
+    playerScore++;
+    displayRoundResult(playerChoice, computerChoice, "Player");
+  } else {
+    computerScore++;
+    displayRoundResult(playerChoice, computerChoice, "Computer");
+  }
+
+  if (rounds === 5) {
+    finalEl.style.display = 'block';
+    finalEl.style.color = '#B6C2B7'
+    finalEl.innerText = `Final result: Player: ${playerScore}\n\nComputer: ${computerScore}`;
+    startAgainBtn.style.display = "block";
+  }
 }
 
-game();
+// Function to reset the game and start over
+function startAgain() {
+  rounds = 0;
+  playerScore = 0;
+  computerScore = 0;
+  finalEl.style.display = "none";
+  startAgainBtn.style.display = "none";
+  resultEl.innerText = "";
+}
+
+// Get random computer choice
+function getComputerChoice() {
+  const choices = [ROCK, PAPER, SCISSORS];
+  return choices[Math.floor(Math.random() * choices.length)];
+}
+
+// Display final result
+finalEl.innerText = `Final result: Player: ${playerScore} - Computer: ${computerScore}`;

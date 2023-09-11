@@ -1,0 +1,67 @@
+/***** Universal Selectors *****/
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    caret-color: transparent;
+    background-color: #7C8278;
+}
+
+.content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 75px;
+    margin-top: 25px;
+}
+
+/***** h1 title *****/
+h1 {
+    color: #B6C2B7;
+}
+
+/***** h3 sub title *****/
+h3 {
+    font-weight: bold;
+    display: inline-block;
+    vertical-align: top;
+}
+
+
+/***** Buttons *****/
+.button-flex-container {
+    display: flex;
+    gap: 150px;
+}
+
+button {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: none;
+    font-size: 75px;
+    font-weight: inherit;
+}
+
+#startAgainBtn {
+    display: none; 
+    margin-bottom: 25px;
+    font-family: 'Space Grotesk', sans-serif;
+    color: #B6C2B7;
+    font-size: 1.17rem;
+}
+
+#final {
+    justify-content: flex-start;
+}

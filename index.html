@@ -1,12 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="main.js"></script>
+    <script src="https://kit.fontawesome.com/8ada09e1e0.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap" rel="stylesheet">
     <title>Rock, Paper Scissors</title>
 </head>
+
 <body>
-    
+    <div class="content-container">
+        <h1>Rock, Paper, Scissors</h1>
+        <div class="button-flex-container">
+            <button id="rockBtn"><i class="fa-solid fa-hand-back-fist fa-2xl"></i></button>
+            <button id="paperBtn"><i class="fa-solid fa-hand fa-2xl"></i></button>
+            <button id="scissorsBtn"><i class="fa-solid fa-hand-scissors fa-2xl"></i></button>
+        </div>
+
+        <h3 id="result"></h3>
+        <h3 id="final" style="display: none;"></h3>
+        <button id="startAgainBtn">Start Again</button>
+    </div>
+
+
+    <script src="main.js"></script>
 </body>
+
 </html>
